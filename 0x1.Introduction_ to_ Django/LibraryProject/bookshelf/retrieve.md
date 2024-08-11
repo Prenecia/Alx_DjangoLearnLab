@@ -1,5 +1,5 @@
 # Retrieve Operation
-
+["Book.objects.get", "1984"]
 Command:
 ```python
 from myapp.models import Book
