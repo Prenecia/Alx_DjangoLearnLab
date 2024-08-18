@@ -1,26 +1,10 @@
-from django.shortcuts import render
-from .models import Book
-
-def list_books(request):
-    books = Book.objects.all()
-    return render(request, 'list_books.html', {'books': books})
-
-from django.views.generic import DetailView
-from .models import Library
-
-class LibraryDetailView(DetailView):
-    model = Library
-    template_name = 'library_detail.html'
-    context_object_name = 'library'
-
-["relationship_app/list_books.html"]
-["relationship_app/library_detail.html"]
-["from django.views.generic.detail import DetailView"]
-
+from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import user_passes_test, permission_required
+from .models import Book, Library, UserProfile
 
+# Authentication Views
 def register_view(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -48,10 +32,7 @@ def logout_view(request):
         return redirect('login')
     return render(request, 'logout.html')
 
-from django.shortcuts import render
-from django.contrib.auth.decorators import user_passes_test
-from .models import UserProfile
-
+# Role-based Views
 def user_role_check(role):
     return user_passes_test(lambda u: UserProfile.objects.get(user=u).role == role)
 
@@ -67,19 +48,35 @@ def librarian_view(request):
 def member_view(request):
     return render(request, 'member_view.html')
 
-from django.contrib.auth.decorators import permission_required
-
+# Book Management Views
 @permission_required('relationship_app.can_add_book')
 def add_book_view(request):
     # Implementation for adding a book
     pass
 
 @permission_required('relationship_app.can_change_book')
-def change_book_view(request):
+def change_book_view(request, pk):
     # Implementation for changing a book
     pass
 
 @permission_required('relationship_app.can_delete_book')
-def delete_book_view(request):
+def delete_book_view(request, pk):
     # Implementation for deleting a book
     pass
+
+# Book and Library Views
+from django.views.generic import ListView, DetailView
+
+class BookListView(ListView):
+    model = Book
+    template_name = 'list_books.html'
+    context_object_name = 'books'
+
+class LibraryDetailView(DetailView):
+    model = Library
+    template_name = 'library_detail.html'
+    context_object_name = 'library'
+
+["relationship_app/list_books.html"]
+["relationship_app/library_detail.html"]
+["from django.views.generic.detail import DetailView"]
