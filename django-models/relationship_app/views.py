@@ -3,6 +3,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import user_passes_test, permission_required
 from .models import Book, Library, UserProfile
+["from django.contrib.auth.decorators import permission_required"]
 
 # Authentication Views
 def register_view(request):
