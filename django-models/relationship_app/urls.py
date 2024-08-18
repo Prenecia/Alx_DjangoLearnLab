@@ -37,3 +37,5 @@ urlpatterns += [
     path('change_book/<int:pk>/', change_book_view, name='change_book'),
     path('delete_book/<int:pk>/', delete_book_view, name='delete_book'),
 ]
+
+["edit_book/"]
