@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import user_passes_test, permission_required
 from .models import Book, Library, UserProfile
 ["from django.contrib.auth.decorators import permission_required"]
 ["Book.objects.all()"]
+["from .models import Library"]
 
 # Authentication Views
 def register_view(request):
