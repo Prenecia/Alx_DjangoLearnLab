@@ -48,27 +48,22 @@ def logout_view(request):
         return redirect('login')
     return render(request, 'logout.html')
 
-from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render
+from django.contrib.auth.decorators import user_passes_test
+from .models import UserProfile
 
-def admin_check(user):
-    return user.userprofile.role == 'Admin'
+def user_role_check(role):
+    return user_passes_test(lambda u: UserProfile.objects.get(user=u).role == role)
 
-def librarian_check(user):
-    return user.userprofile.role == 'Librarian'
-
-def member_check(user):
-    return user.userprofile.role == 'Member'
-
-@user_passes_test(admin_check)
+@user_role_check('Admin')
 def admin_view(request):
     return render(request, 'admin_view.html')
 
-@user_passes_test(librarian_check)
+@user_role_check('Librarian')
 def librarian_view(request):
     return render(request, 'librarian_view.html')
 
-@user_passes_test(member_check)
+@user_role_check('Member')
 def member_view(request):
     return render(request, 'member_view.html')
 
