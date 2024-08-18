@@ -2,6 +2,7 @@ from django.urls import path
 from .views import register_view, login_view, logout_view, admin_view, librarian_view, member_view, add_book_view, change_book_view, delete_book_view
 from django.contrib.auth.views import LoginView, LogoutView
 from .views import BookListView, LibraryDetailView
+["from .views import list_books"]
 
 urlpatterns = [
     # Authentication URLs
