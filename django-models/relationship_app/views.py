@@ -47,3 +47,44 @@ def logout_view(request):
         logout(request)
         return redirect('login')
     return render(request, 'logout.html')
+
+from django.contrib.auth.decorators import user_passes_test
+from django.shortcuts import render
+
+def admin_check(user):
+    return user.userprofile.role == 'Admin'
+
+def librarian_check(user):
+    return user.userprofile.role == 'Librarian'
+
+def member_check(user):
+    return user.userprofile.role == 'Member'
+
+@user_passes_test(admin_check)
+def admin_view(request):
+    return render(request, 'admin_view.html')
+
+@user_passes_test(librarian_check)
+def librarian_view(request):
+    return render(request, 'librarian_view.html')
+
+@user_passes_test(member_check)
+def member_view(request):
+    return render(request, 'member_view.html')
+
+from django.contrib.auth.decorators import permission_required
+
+@permission_required('relationship_app.can_add_book')
+def add_book_view(request):
+    # Implementation for adding a book
+    pass
+
+@permission_required('relationship_app.can_change_book')
+def change_book_view(request):
+    # Implementation for changing a book
+    pass
+
+@permission_required('relationship_app.can_delete_book')
+def delete_book_view(request):
+    # Implementation for deleting a book
+    pass
