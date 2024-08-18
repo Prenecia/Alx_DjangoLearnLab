@@ -15,3 +15,4 @@ class LibraryDetailView(DetailView):
 
 ["relationship_app/list_books.html"]
 ["relationship_app/library_detail.html"]
+["from django.views.generic.detail import DetailView"]
