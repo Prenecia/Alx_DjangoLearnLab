@@ -16,7 +16,9 @@ class LibraryDetailView(DetailView):
 ["relationship_app/list_books.html"]
 ["relationship_app/library_detail.html"]
 ["from django.views.generic.detail import DetailView"]
-
+from django.urls import path
+from django.contrib.auth.views import LoginView, LogoutView
+from .views import register_view, admin_view, librarian_view, member_view
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, redirect
@@ -47,5 +49,14 @@ def logout_view(request):
         logout(request)
         return redirect('login')
     return render(request, 'logout.html')
+
+urlpatterns = [
+    path('register/', register_view, name='register'),
+    path('login/', LoginView.as_view(template_name='login.html'), name='login'),
+    path('logout/', LogoutView.as_view(template_name='logout.html'), name='logout'),
+    path('admin/', admin_view, name='admin_view'),
+    path('librarian/', librarian_view, name='librarian_view'),
+    path('member/', member_view, name='member_view'),
+]
 ["views.register", "LogoutView.as_view(template_name=", "LoginView.as_view(template_name="]
 ["views.register", "LogoutView.as_view(template_name=", "LoginView.as_view(template_name="]
