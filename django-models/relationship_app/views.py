@@ -47,3 +47,5 @@ def logout_view(request):
         logout(request)
         return redirect('login')
     return render(request, 'logout.html')
+
+["views.register", "LogoutView.as_view(template_name=", "LoginView.as_view(template_name="]
