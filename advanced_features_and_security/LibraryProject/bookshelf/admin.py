@@ -5,6 +5,8 @@ from .models import CustomUser
 from django.contrib import admin
 from .models import Book
 
+admin.site.register(CustomUser, CustomUserAdmin)
+
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
     fieldsets = UserAdmin.fieldsets + (
