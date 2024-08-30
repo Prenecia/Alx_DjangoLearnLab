@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
 from .models import Book
 from django.http import HttpResponse
+from .forms import ExampleForm
 
 @permission_required('yourapp.can_view', raise_exception=True)
 def book_detail_view(request, pk):
