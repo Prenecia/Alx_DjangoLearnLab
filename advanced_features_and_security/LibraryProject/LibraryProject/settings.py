@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-64+dgbn92_qn_a62%nvduj7kyffzj6wid@=^zf#%g)nce#t(7z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = false
 
 ALLOWED_HOSTS = []
 
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'csp.middleware.CSPMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -51,6 +52,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# Content Security Policy settings
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_SCRIPT_SRC = ("'self'", "https://trustedscripts.example.com")
+CSP_STYLE_SRC = ("'self'", "https://trustedstyles.example.com")
 
 ROOT_URLCONF = 'LibraryProject.urls'
 
@@ -124,3 +130,22 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Prevent the browser from interpreting files as something else
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Enable XSS protection
+SECURE_BROWSER_XSS_FILTER = True
+
+# Clickjacking protection
+X_FRAME_OPTIONS = 'DENY'
+
+# Ensure cookies are only sent over HTTPS
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+SECURE_BROWSER_XSS_FILTER
+X_FRAME_OPTIONS
+SECURE_CONTENT_TYPE_NOSNIFF
+CSRF_COOKIE_SECURE
+SESSION_COOKIE_SECURE
