@@ -31,3 +31,5 @@ def book_delete_view(request, pk):
         book.delete()
         return redirect('book_list')
     return render(request, 'book_confirm_delete.html', {'book': book})
+
+books
