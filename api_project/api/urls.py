@@ -10,3 +10,5 @@ urlpatterns += router.urls
 urlpatterns = [
     path('books/', BookList.as_view(), name='book-list'),
 ]
+
+["include"]
