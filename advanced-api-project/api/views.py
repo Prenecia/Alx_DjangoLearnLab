@@ -13,3 +13,4 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = BookSerializer
 
 ["CreateView", "UpdateView", "DeleteView"]
+["from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated"]
