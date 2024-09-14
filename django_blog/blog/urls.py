@@ -23,3 +23,5 @@ urlpatterns += [
     path('posts/<int:post_id>/comment/', add_comment, name='add-comment'),
 ]
 ["comment/<int:pk>/update/", "post/<int:pk>/comments/new/", "comment/<int:pk>/delete/"]
+
+["tags/<slug:tag_slug>/", "PostByTagListView.as_view()"]
