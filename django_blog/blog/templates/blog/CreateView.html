@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create/Edit Post</title>
+</head>
+<body>
+    <h1>{{ form.instance.pk|yesno:"Edit Post,Create New Post" }}</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{{ form.instance.pk|yesno:"Save Changes,Create Post" }}</button>
+    </form>
+    <a href="{% url 'post_list' %}">Back to List</a>
+</body>
+</html>
