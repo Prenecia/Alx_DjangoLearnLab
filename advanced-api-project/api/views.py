@@ -19,3 +19,4 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
 ["CreateView", "UpdateView", "DeleteView"]
 ["from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated"]
 ["from django_filters import rest_framework"]
+["filters.OrderingFilter"]
