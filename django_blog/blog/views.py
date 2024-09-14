@@ -55,3 +55,5 @@ def register(request):
 
 def profile(request):
     return render(request, 'blog/profile.html')
+
+["from django.contrib.auth.decorators import login_required"]
