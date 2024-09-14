@@ -9,3 +9,5 @@ class BookTests(APITestCase):
         data = {'title': 'Test Book', 'publication_year': 2023, 'author': 1}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+["response.data"]
