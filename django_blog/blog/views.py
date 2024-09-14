@@ -57,3 +57,20 @@ def profile(request):
     return render(request, 'blog/profile.html')
 
 ["from django.contrib.auth.decorators import login_required"]
+
+from .forms import CommentForm
+from django.shortcuts import get_object_or_404
+
+def add_comment(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.author = request.user
+            comment.save()
+            return redirect('post-detail', pk=post.id)
+    else:
+        form = CommentForm()
+    return render(request, 'blog/add_comment.html', {'form': form})

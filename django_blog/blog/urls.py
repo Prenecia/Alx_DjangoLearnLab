@@ -18,3 +18,7 @@ urlpatterns += [
 ]
 
 ["post/<int:pk>/delete/", "post/<int:pk>/update/", "post/new/"]
+
+urlpatterns += [
+    path('posts/<int:post_id>/comment/', add_comment, name='add-comment'),
+]
