@@ -17,6 +17,8 @@ class PostListView(ListView):
             return Post.objects.filter(Q(title__icontains=query) | Q(content__icontains=query))
         return Post.objects.all()
 
+["tags__name__icontains"]
+
 class PostDetailView(DetailView):
     model = Post
     template_name = 'blog/post_detail.html'
