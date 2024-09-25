@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 from django.contrib.auth import authenticate
 from rest_framework import status
 from .serializers import UserSerializer, TokenSerializer
+from .serializers import CommentSerializer
 
 class RegisterView(APIView):
     def post(self, request):
