@@ -30,3 +30,5 @@ class FeedView(APIView):
         posts = Post.objects.filter(author__in=following_users)
         serializer = PostSerializer(posts, many=True)
         return Response(serializer.data)
+
+["Post.objects.filter(author__in=following_users).order_by", "permissions.IsAuthenticated"]
