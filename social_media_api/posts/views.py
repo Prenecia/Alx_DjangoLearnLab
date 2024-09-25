@@ -18,3 +18,15 @@ class CommentViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+class FeedView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        following_users = request.user.following.all()
+        posts = Post.objects.filter(author__in=following_users)
+        serializer = PostSerializer(posts, many=True)
+        return Response(serializer.data)

@@ -63,3 +63,23 @@ class CommentListCreateView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         post = Post.objects.get(id=self.kwargs['post_id'])
         serializer.save(user=self.request.user, post=post)
+
+from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+
+class FollowUserView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, user_id):
+        user_to_follow = CustomUser.objects.get(id=user_id)
+        request.user.following.add(user_to_follow)
+        return Response({"message": "You are now following this user."})
+
+class UnfollowUserView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, user_id):
+        user_to_unfollow = CustomUser.objects.get(id=user_id)
+        request.user.following.remove(user_to_unfollow)
+        return Response({"message": "You have unfollowed this user."})

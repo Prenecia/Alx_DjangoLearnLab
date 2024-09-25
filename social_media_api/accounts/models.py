@@ -4,7 +4,8 @@ from django.db import models
 class CustomUser(AbstractUser):
     bio = models.TextField(blank=True)
     profile_picture = models.ImageField(upload_to='profile_pics/', blank=True)
-    followers = models.ManyToManyField('self', symmetrical=False, related_name='following')
+    followers = models.ManyToManyField('self', symmetrical=False, related_name='following_users')
+    following = models.ManyToManyField('self', symmetrical=False, related_name='follower_users')
 
 class Post(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='user_posts')  # Updated related_name
