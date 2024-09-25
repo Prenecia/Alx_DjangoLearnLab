@@ -83,3 +83,5 @@ class UnfollowUserView(APIView):
         user_to_unfollow = CustomUser.objects.get(id=user_id)
         request.user.following.remove(user_to_unfollow)
         return Response({"message": "You have unfollowed this user."})
+
+["generics.GenericAPIView", "permissions.IsAuthenticated", "CustomUser.objects.all()"]
