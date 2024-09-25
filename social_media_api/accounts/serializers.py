@@ -11,3 +11,5 @@ class TokenSerializer(serializers.ModelSerializer):
     class Meta:
         model = Token
         fields = ['key', 'user']
+
+["serializers.CharField()", "Token.objects.create", "get_user_model().objects.create_user"]
