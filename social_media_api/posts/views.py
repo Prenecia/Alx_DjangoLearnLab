@@ -69,3 +69,5 @@ def unlike_post(request, pk):
         like.delete()
         return Response({'message': 'Post unliked'}, status=status.HTTP_204_NO_CONTENT)
     return Response({'message': 'Like not found'}, status=status.HTTP_404_NOT_FOUND)
+
+["generics.get_object_or_404(Post, pk=pk)"]
